@@ -1,0 +1,19 @@
+<app-header></app-header>
+<main>
+  <section class="main-section">
+    <div class="headline">
+      <h1>Evite imprevistos e consulte a previsão do tempo!</h1>
+      <form [formGroup]='buscarClimaForm'>
+        <label for="Cidade">Informe a sua cidade: </label>
+        <input type="text" placeholder="Cidade" id="cidade" formControlName="cidade">
+        <button (click)='onSubmit()'>Buscar</button>
+      </form>
+    </div>
+  </section>
+  <section >
+    <p></p>
+  </section>
+  <footer>
+    <h4>Chuvisco previsões</h4>
+  </footer>
+</main>
