@@ -1,5 +1,62 @@
 .main-section {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 80%;
+  margin: auto;
+}
+
+#weather-result {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  min-height: 100px;
+}
+
+.switch-temperatura {
+  display: flex;
+  justify-content: center;
+  height: 15px;
+  margin: 0 10px 0;
+  font-size: 30px;
+}
+
+.vertical-line {
+  border-left: 2px solid;
+  margin: 0 5px;
+  height: 30px;
+}
+
+.btn-temperatura {
+  cursor: pointer;
+  color: #a1a1a0;
+}
+
+.btn-temperatura-activated {
+  color: black;
+}
+
+.weather-card > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-temp {
+  font-weight: 400;
+  color: #202124;
+  font-size: 82px;
+}
+
+.weather-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color:  #70757a;
+  font-size: 17px;
+  line-height: 20px;
 }

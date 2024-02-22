@@ -1,19 +1,34 @@
 <app-header></app-header>
-<main>
-  <section class="main-section">
-    <div class="headline">
-      <h1>Evite imprevistos e consulte a previsão do tempo!</h1>
-      <form [formGroup]='buscarClimaForm'>
-        <label for="Cidade">Informe a sua cidade: </label>
-        <input type="text" placeholder="Cidade" id="cidade" formControlName="cidade">
-        <button (click)='onSubmit()'>Buscar</button>
-      </form>
-    </div>
+<main class="main-section">
+  <h1>Evite imprevistos e consulte a previsão do tempo!</h1>
+  <form id="weather-form" [formGroup]='buscarClimaForm' (ngSubmit)="onSubmit()">
+    <label for="Cidade">Informe a sua cidade: </label>
+    <input type="text" placeholder="Cidade" id="cidade" formControlName="cidade" required>
+    <button type="submit">Buscar</button>
+  </form>
+  <section id="weather-result">
+    @if(buscaClimaResponse) {
+      <h2>{{buscaClimaResponse.name}}</h2>
+      <div class="weather-card">
+        <div>
+          <img [src]="'https://openweathermap.org/img/wn/' + buscaClimaResponse.weather[0].icon + '@4x.png'">
+          <span class="main-temp">{{tipoTemperatura == 'CELSIUS' ? converterKelvinParaCelsius(buscaClimaResponse.main.temp) : converterKelvinParaFahrenheit(buscaClimaResponse.main.temp)}}</span>
+          <div class="switch-temperatura">
+            <div class="btn-temperatura" [ngClass]="{'btn-temperatura-activated': tipoTemperatura === 'CELSIUS'}" (click)="tipoTemperatura = 'CELSIUS'">ºC</div>
+            <div class="vertical-line"></div>
+            <div class="btn-temperatura" [ngClass]="{'btn-temperatura-activated': tipoTemperatura === 'FAHRENHEIT'}" (click)="tipoTemperatura = 'FAHRENHEIT'">ºF</div>
+          </div>
+        </div>
+        <div>
+          <div class="weather-details">
+            <span>Sensação termica: {{tipoTemperatura == 'CELSIUS' ? converterKelvinParaCelsius(buscaClimaResponse.main.feels_like) : converterKelvinParaFahrenheit(buscaClimaResponse.main.feels_like)}}</span>
+            <span>Temperatura maxima: {{tipoTemperatura == 'CELSIUS' ? converterKelvinParaCelsius(buscaClimaResponse.main.temp_max) : converterKelvinParaFahrenheit(buscaClimaResponse.main.temp_max)}}</span>
+            <span>Temperatura minima: {{tipoTemperatura == 'CELSIUS' ? converterKelvinParaCelsius(buscaClimaResponse.main.temp_min) : converterKelvinParaFahrenheit(buscaClimaResponse.main.temp_min)}}</span>
+            <span>Umidade: {{buscaClimaResponse.main.humidity}}%</span>
+            <span>Vento: {{ventoEmKmPorHora(buscaClimaResponse.wind.speed)}} km/h</span>
+          </div>
+        </div>
+      </div>
+    }
   </section>
-  <section >
-    <p></p>
-  </section>
-  <footer>
-    <h4>Chuvisco previsões</h4>
-  </footer>
 </main>
